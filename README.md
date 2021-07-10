@@ -16,14 +16,14 @@
 ## Hosting some simple static server
 
 ```
-$ docker run --name my-waf -v /some/config/routes.eskip:/etc/coraza-waf/routes.eskip:ro -d jptosso/coraza-waf
+$ docker run --name my-waf -p 8080:8080 -v /path/to/config:/coraza:ro -d jptosso/coraza-waf
 ```
 
 Alternatively, a simple Dockerfile can be used to generate a new image that includes the necessary content (which is a much cleaner solution than the bind mount above):
 
 ```
 FROM jptosso/coraza-waf
-COPY static-settings-directory /etc/coraza-waf
+COPY static-settings-directory /coraza
 ```
 
 Place this file in the same directory as your directory of content ("static-settings-directory"), ``run docker build -t my-waf .``, then start your container:
@@ -32,10 +32,7 @@ Place this file in the same directory as your directory of content ("static-sett
 $ docker run --name my-waf -d some-waf-server
 ```
 
-``static-settings-directory`` structure must be:
-- /routes.eskip: Routes file
-- /skipper.yaml: Skipper settings
-- /profiles/{profile}/{rules}.conf: rules to be imported by skipper filter
+``static-settings-directory`` must contain a Caddyfile, see (Caddyfile documentation)[#]
 
 ## Exposing external port
 
