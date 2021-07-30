@@ -11,6 +11,10 @@ COPY entrypoint.sh /bin/
 COPY install-crs.sh .
 COPY install-caddy.sh .
 
+ARG CRS_USE=false
+ARG CRS_VERSION
+ARG CRS_EXCLUDE_WORDPRESS=false
+
 # Setup libinjection
 RUN apt-get update && apt install -y \
     libpcre++-dev \
