@@ -4,7 +4,7 @@
 	order coraza_waf first
 }
 
-http://127.0.0.1:8080 {
+:8080 {
 	coraza_waf {
 		directives `
 		SecRule REQUEST_URI "/denied" "id:2, deny, log, phase:1"
