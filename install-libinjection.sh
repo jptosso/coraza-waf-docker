@@ -10,4 +10,3 @@ cp *.so /usr/local/lib
 cp *.o /usr/local/lib
 cp src/*.h /usr/local/include/
 chmod 444 /usr/local/include/libinjection*
-ldconfig   
